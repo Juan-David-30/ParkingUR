@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 Se ha ingresado correctamente
+    p Su usuario ha sido creado con éxito con los siguientes datos:
+    ul 
+        li Placa  #{placa}
+        if type 
+            li tipo: carro
+        else 
+            li tipo: moto
