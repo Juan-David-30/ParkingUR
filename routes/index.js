@@ -3,7 +3,7 @@ var router = express.Router();
 
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, addDoc, getDocs } = require( 'firebase/firestore');
+const { Timestamp, getFirestore, collection, addDoc, getDocs } = require( 'firebase/firestore');
 const { db } = require('../DB/firebase');
 
 
@@ -13,11 +13,26 @@ async function getCollection(col)
   const docs = await getDocs(collection(db, col));
   let tempDoc = []
   docs.forEach((doc)=>{
-    tempDoc.push( { id: doc.id,  ... doc.data()})
+    tempDoc.push( { id: doc.id,  ... doc.data(), fecha: doc.data().entrada.toDate().toLocaleString() })
   })
-  return tempDoc
+  return tempDoc;
 }
 
+
+// Para obtener todos los elementos de una 
+async function getHistory()
+{
+  const docs = await getDocs(collection(db, 'historial'));
+  let tempDoc = []
+  docs.forEach((doc)=>{
+    tempDoc.push( {
+       id: doc.id,  ... doc.data(), 
+       fecha_entrada: doc.data().entrada.toDate().toLocaleString(),
+       fecha_salida: doc.data().salida.toDate().toLocaleString()  
+      })
+  })
+  return tempDoc;
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -31,11 +46,11 @@ router.get('/list', async (req, res)=>{
       documentos: docs
     }
   )
-})
+});
 
 router.get('/entrada', (req, res)=>{
   res.render('ingresar', {})
-})
+});
 
 
 router.post('/entrada', async (req, res)=>{
@@ -46,10 +61,20 @@ router.post('/entrada', async (req, res)=>{
   }
   const docRef = await addDoc(collection(db, "vehiculos"), {
     placa: req.body.placa,
-    tipo: tipo
+    tipo: tipo,
+    entrada: Timestamp.fromDate(new Date())
   });
-  res.redirect('/list')
+  res.redirect('/list');
 
+});
+
+router.get('/history', async (req, res)=>{
+  const docs = await getHistory();
+  res.render('history', 
+    {
+      documentos: docs
+    }
+  )
 })
 
 

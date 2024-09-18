@@ -11,6 +11,7 @@ block content
           th Placa
           th Tipo 
           th Hora entrada
+          th Hora salida
       tbody
         each document in documentos 
           tr 
@@ -19,6 +20,5 @@ block content
               td Carro 
             else 
               td Moto
-            td= document.fecha
-        
-
+            td= document.fecha_entrada
+            td= document.fecha_salida
