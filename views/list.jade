@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  a(href="/", class='btn btn-danger') Regresar
+
+  div
+    table(class='table')
+      thead 
+        tr
+          th Placa
+          th Tipo 
+      tbody
+        each document in documentos 
+          tr 
+            td= document.placa 
+            if document.tipo
+              td Carro 
+            else 
+              td Moto
+            
+        
+

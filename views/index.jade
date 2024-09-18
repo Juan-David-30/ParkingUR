@@ -3,11 +3,5 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  h2 ingrese un vehiculo: 
-  form(action="/ingresar", method="post") 
-    p placa: 
-      input(type="text", name ="placa")  
-    p tipo de vehiculo: 
-      input(type="checkbox", name="tipo")
-    button(type="submit", namespace ="Subir") 
-
+  a(href="/list", class='btn btn-primary') Lista de vehiculos 
+  a(href="/entrada", class='btn btn-success') Entrada de vehiculos 

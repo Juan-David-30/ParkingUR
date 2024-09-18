@@ -3,55 +3,53 @@ var router = express.Router();
 
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, addDoc } = require( 'firebase/firestore');
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBS4cPjJeAN-l9pr9xqf7khZm0QwshndZs",
-  authDomain: "parking-ur.firebaseapp.com",
-  projectId: "parking-ur",
-  storageBucket: "parking-ur.appspot.com",
-  messagingSenderId: "237670195895",
-  appId: "1:237670195895:web:609ed59eb4b0b6897c2332",
-  measurementId: "G-SHSL5X6NCP"
-};
+const { getFirestore, collection, addDoc, getDocs } = require( 'firebase/firestore');
+const { db } = require('../DB/firebase');
 
 
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Para obtener todos los elementos de una 
+async function getCollection(col)
+{
+  const docs = await getDocs(collection(db, col));
+  let tempDoc = []
+  docs.forEach((doc)=>{
+    tempDoc.push( { id: doc.id,  ... doc.data()})
+  })
+  return tempDoc
+}
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Parking Ur' });
-  /*db.collection('vehiculos').doc('mHpIJIvZHbvZRdB3AkoF').set({
-      placa: 'asdgjhfasdf',
-      type: True
-  });*/
 });
 
+router.get('/list', async (req, res)=>{
+  const docs = await getCollection('vehiculos');
+  res.render('list', 
+    {
+      documentos: docs
+    }
+  )
+})
 
-router.post('/ingresar', (req, res)=>{
-  /*db.collection('vehiculos').add({
-    placa: req.body.post.placa,
-    type: req.body.post.tipo
-  })
-  .then(docRef => {
-    console.log('Document written with ID:', docRef.id);
-  })
-  .catch(error => {
-    console.error('Error adding document:', error);
-  });*/
-  res.render('ingresado', {
+router.get('/entrada', (req, res)=>{
+  res.render('ingresar', {})
+})
+
+
+router.post('/entrada', async (req, res)=>{
+  let tipo = true
+  if(req.body.tipo == '0')
+  {
+    tipo = false
+  }
+  const docRef = await addDoc(collection(db, "vehiculos"), {
     placa: req.body.placa,
-    type: req.body.tipo
+    tipo: tipo
   });
+  res.redirect('/list')
+
 })
 
 
