@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 // Import the functions you need from the SDKs you need
-const { initializeApp } = require("firebase/app");
-const { Timestamp, getFirestore, collection, addDoc, getDocs } = require( 'firebase/firestore');
+const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc } = require( 'firebase/firestore');
 const { db } = require('../DB/firebase');
+const { render } = require('jade');
 
 
 // Para obtener todos los elementos de una 
@@ -76,6 +76,29 @@ router.get('/history', async (req, res)=>{
     }
   )
 })
+
+
+
+router.get('/salida', async (req, res)=>{
+  const docs = await getCollection('vehiculos');
+  res.render('salida', 
+    {
+      documentos: docs
+    }
+  )
+});
+
+
+router.post('/salida', async (req, res)=>{
+  const documentref = doc(db, 'vehiculos', req.body.id);
+  const document = await getDoc(documentref)
+  const docRef = await addDoc(collection(db, "historial"), {
+    ... document.data(),
+    salida: Timestamp.fromDate(new Date())
+  });
+  deleteDoc(documentref)
+  res.redirect('/history');
+});
 
 
 module.exports = router;

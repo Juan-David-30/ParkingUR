@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  a(href="/", class='btn btn-danger') Regresar
+
+  div
+    table(class='table')
+      thead 
+        tr
+          th Placa
+          th Tipo 
+          th Hora entrada
+          th Salida
+      tbody
+        each document in documentos 
+          tr 
+            td= document.placa 
+            if document.tipo
+              td Carro 
+            else 
+              td Moto
+            td= document.fecha
+            td
+                form(action="/salida", method="post") 
+                    input(type="text", name="id", value=document.id, hidden=true)
+                    button(type="submit", class="btn btn-danger") Salida 
+

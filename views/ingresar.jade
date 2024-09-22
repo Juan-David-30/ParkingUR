@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a(href="/", class='btn btn-danger') Regresar
   h2 ingrese un vehiculo: 
   form(action="/entrada", method="post") 
     p tipo de vehiculo: 
@@ -10,7 +11,7 @@ block content
           option(value="1") Carro 
           option(value="0") Moto 
     p placa:   
-      input(type="text", name ="placa", required=true, pattern='[A-Za-z]{3}[0-9]{3}' title='Formato de placa 3 letras 3', id='placa')  
+      input(type="text", name ="placa", required=true, pattern='[A-Za-z]{3}[0-9]{3}' title='Formato de placa 3 letras 3 números', id='placa')  
     button(type="submit", namespace ="Subir", class='btn btn-success') Subir 
   script(src="/javascripts/validation.js") 
   
