@@ -102,7 +102,9 @@ router.get('/salida', async (req, res)=>{
   const docs = await getCollection('vehiculos');
   res.render('salida', 
     {
-      documentos: docs
+      documentos: docs,
+      count: await getCount('vehiculos'),
+      cupos: CUPOS
     }
   )
 });
