@@ -3,7 +3,10 @@ extends layout
 block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar
-
+  div 
+    p= 'Cupos disponibles: ' + (cupos - count)
+    p= 'Vehiculos activos: ' + count
+ 
   div
     table(class='table')
       thead 

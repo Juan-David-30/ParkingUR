@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar
+  div 
+  p= 'Cupos disponibles: ' + (cupos - count)
   h2 ingrese un vehiculo: 
   form(action="/entrada", method="post") 
     p tipo de vehiculo: 

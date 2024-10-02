@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 // Import the functions you need from the SDKs you need
-const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc } = require( 'firebase/firestore');
+const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, getCountFromServer } = require( 'firebase/firestore');
 const { db } = require('../DB/firebase');
 const { render } = require('jade');
+
+CUPOS = 62
 
 
 // Para obtener todos los elementos de una 
@@ -13,9 +15,21 @@ async function getCollection(col)
   const docs = await getDocs(collection(db, col));
   let tempDoc = []
   docs.forEach((doc)=>{
-    tempDoc.push( { id: doc.id,  ... doc.data(), fecha: doc.data().entrada.toDate().toLocaleString() })
+    tempDoc.push( 
+      { 
+        id: doc.id,  
+        ... doc.data(), 
+        fecha: doc.data().entrada.toDate().toLocaleString()
+      })
   })
   return tempDoc;
+}
+
+async function getCount(col)
+{
+  const coll = collection(db, col);
+  const snapshot = await getCountFromServer(coll);
+  return snapshot.data().count
 }
 
 
@@ -43,13 +57,18 @@ router.get('/list', async (req, res)=>{
   const docs = await getCollection('vehiculos');
   res.render('list', 
     {
-      documentos: docs
+      documentos: docs,
+      count: await getCount('vehiculos'), 
+      cupos: CUPOS
     }
   )
 });
 
-router.get('/entrada', (req, res)=>{
-  res.render('ingresar', {})
+router.get('/entrada', async (req, res)=>{
+  res.render('ingresar', {
+    count: await getCount('vehiculos'), 
+    cupos: CUPOS
+  })
 });
 
 
