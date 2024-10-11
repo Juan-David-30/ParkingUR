@@ -6,7 +6,7 @@ const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, delet
 const { db } = require('../DB/firebase');
 const { render } = require('jade');
 
-CUPOS = 62
+CUPOS = [7,7,7,7]
 
 
 // Para obtener todos los elementos de una 
@@ -27,9 +27,20 @@ async function getCollection(col)
 
 async function getCount(col)
 {
-  const coll = collection(db, col);
-  const snapshot = await getCountFromServer(coll);
-  return snapshot.data().count
+  // Reference to the 'vehiculos' collection
+  const docs = await getDocs(collection(db,col));
+  let pisoCount = {}
+  docs.forEach((doc)=>{
+    const piso = doc.data().piso;
+    // If the piso exists, increment the count, otherwise initialize it
+    if (pisoCount[piso]) {
+        pisoCount[piso]++;
+    } else {
+        pisoCount[piso] = 1;
+    }
+  })
+  return pisoCount
+
 }
 
 
@@ -81,6 +92,7 @@ router.post('/entrada', async (req, res)=>{
   const docRef = await addDoc(collection(db, "vehiculos"), {
     placa: req.body.placa,
     tipo: tipo,
+    piso: req.body.piso,
     entrada: Timestamp.fromDate(new Date())
   });
   res.redirect('/list');
@@ -100,6 +112,7 @@ router.get('/history', async (req, res)=>{
 
 router.get('/salida', async (req, res)=>{
   const docs = await getCollection('vehiculos');
+
   res.render('salida', 
     {
       documentos: docs,

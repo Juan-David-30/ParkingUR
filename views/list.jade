@@ -4,24 +4,34 @@ block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar
   div 
-    p= 'Cupos disponibles: ' + (cupos - count)
-    p= 'Vehiculos activos: ' + count
- 
-  div
-    table(class='table')
+    table(class="table")
       thead 
+        th Piso
+        th Cupos disponibles 
+        th Vehiculos activos
+      tbody 
+      each cupo, i in cupos
         tr
-          th Placa
-          th Tipo 
-          th Hora entrada
-      tbody
-        each document in documentos 
-          tr 
-            td= document.placa 
-            if document.tipo
-              td Carro 
-            else 
-              td Moto
-            td= document.fecha
-        
+          td= i + 1
+          td= (cupo - (count[i] ? count[i] : 0))
+          td= (count[i] ? count[i] : 0)
 
+  div
+  table(class='table')
+    thead 
+      tr
+        th Placa
+        th Tipo 
+        th Piso
+        th Hora entrada
+    tbody
+      each document in documentos 
+        tr 
+          td= document.placa 
+          if document.tipo
+            td Carro 
+          else 
+            td Moto
+          td= document.piso
+          td= document.fecha
+ 

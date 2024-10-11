@@ -3,11 +3,18 @@ extends layout
 block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar
-
-  div
-    p= 'Cupos disponibles: ' + (cupos - count)
-    p= 'Vehiculos activos: ' + count
-
+  div 
+  table(class="table")
+    thead 
+      th Piso
+      th Cupos disponibles 
+      th Vehiculos activos
+    tbody 
+    each cupo, i in cupos
+      tr
+        td= i + 1
+        td= (cupo - (count[i] ? count[i] : 0))
+        td= (count[i] ? count[i] : 0)
   div
     table(class='table')
       thead 
