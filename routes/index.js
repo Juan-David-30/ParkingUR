@@ -33,10 +33,10 @@ async function getCount(col)
   docs.forEach((doc)=>{
     const piso = doc.data().piso;
     // If the piso exists, increment the count, otherwise initialize it
-    if (pisoCount[piso]) {
-        pisoCount[piso]++;
+    if (pisoCount[piso - 1]) {
+        pisoCount[piso - 1]++;
     } else {
-        pisoCount[piso] = 1;
+        pisoCount[piso - 1] = 1;
     }
   })
   return pisoCount
