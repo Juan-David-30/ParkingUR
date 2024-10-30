@@ -1,8 +1,156 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root{
+  --color-fondo: #FFF5E1;
+  --color-titulo: #FFFFFF;
+  --color-fondo-titulo: #C80036;
+  --color-boton1: #C80036;
+  --color-boton2: #0C1844;
+  --color-boton3: #FF6969;
+  --color-boton4: #C80036;   
 }
 
-a {
-  color: #00B7FF;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  background-color: var(--color-fondo);
+  color: var(--color-titulo);   
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  
+}
+
+/* Fondo de titulo */
+.barra-superior {
+  background-color: var(--color-fondo-titulo);
+  padding: 20px;
+}
+
+.barra-superior h1 {
+  color: var(--color-titulo);
+  font-size: 3em;
+  font-weight: bolder;
+  text-align: left;
+  margin-left: 1px;
+}
+
+.enlaces {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a.btn{
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 15px;
+  justify-content: space-between;
+}
+
+a.btn:hover{
+  transform: scale(1.005);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.moto {
+  align-items: end;
+  width: 320px;
+  height: 305px;
+  margin-left: 20px;
+  margin-bottom: -30px;
+}
+
+.carro {
+  align-items: end;
+  width: 300px;
+  height: 260px;
+  margin-left: 0px;
+  margin-bottom: -5px;
+}
+
+.lista {
+  align-items: end;
+  width: 250px;
+  height: 260px;
+  margin-left: 0px;
+  margin-right: 5px;
+  margin-bottom: -5px;
+}
+
+.btn-enter {
+  background-color: var(--color-boton1);
+  color: white;
+  position: absolute;
+  font-size: 2.5em;
+  justify-content: flex-end;
+  align-items: flex-end;
+  top: 20%;
+  left: 22%;
+  padding: 20px;
+  width: 525px;
+  height: 292px;
+}
+
+.enlaces .btn-enter {
+  padding-right: 25px;
+}
+
+.btn-exit {
+  background-color: var(--color-boton2);
+  color: white;
+  position: absolute;
+  font-size: 2.5em;
+  justify-content: flex-end;
+  align-items: flex-end;
+  top: 20%;
+  right: 22%;
+  width: 525px;
+  height: 291px;
+}
+
+.enlaces .btn-exit {
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+
+.btn-list {
+  background-color: var(--color-boton3);
+  color: white;
+  position: absolute;
+  font-size: 2.5em;
+  justify-content: flex-end;
+  align-items: flex-end;
+  bottom: 19%;
+  padding: 20px;
+  width: 525px;
+  height: 292px;
+}
+
+
+
+.btn-history {
+  background-color: var(--color-boton4);
+  color: white;
+  position: fixed;
+  font-size: 2em;
+  padding: 10px;
+  width: 200px;
+  bottom: 20px;
+  right: 20px;
+}
+
+.enlaces .btn-history {
+  padding-left: 23px;
+}
+
+.logo {
+  position: fixed;
+  width: 150px;
+  height: 120px;
+  bottom: 20px;
+  left: 20px;
 }

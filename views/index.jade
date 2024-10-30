@@ -1,9 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a(href="/list", class='btn btn-primary') Lista de vehiculos 
-  a(href="/entrada", class='btn btn-success') Entrada de vehiculos 
-  a(href="/history", class='btn btn-warning') Historial de vehiculos 
-  a(href="/salida", class='btn btn-danger') Salida de vehiculos 
+  .barra-superior
+    h1= title
+
+  //Enlaces
+  .enlaces
+    a.btn.btn-list(href="/list", class='btn btn-primary') 
+      img(src="/imagenes/lista.png", alt="lista", class='lista') 
+      |Lista de vehiculos
+    a.btn.btn-enter(href="/entrada", class='btn btn-success') 
+      img(src="/imagenes/carro.png", alt="carro", class='carro')
+      |Entrada
+    a.btn.btn-history(href="/history", class='btn btn-warning') Historial 
+    a.btn.btn-exit(href="/salida", class='btn btn-danger') 
+      img(src="/imagenes/motocicleta.png", alt="motocicleta.png", class='moto')
+      |Salida
+
+  //Imagen
+  img(src="/imagenes/logo.png", alt="logo", class='logo')
