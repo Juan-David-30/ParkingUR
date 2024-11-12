@@ -85,14 +85,16 @@ router.get('/entrada', async (req, res)=>{
 
 router.post('/entrada', async (req, res)=>{
   let tipo = true
-  if(req.body.tipo == '0')
+  if(req.body.tipo == 'Moto')
   {
     tipo = false
   }
   const docRef = await addDoc(collection(db, "vehiculos"), {
     placa: req.body.placa,
     tipo: tipo,
-    piso: req.body.piso,
+    piso: req.body.floor,
+    owner: req.body.owner, 
+    color: req.body.color, 
     entrada: Timestamp.fromDate(new Date())
   });
   res.redirect('/list');

@@ -442,3 +442,48 @@ c.btn:hover{
   width: 50px;
   height: 50px;
 }
+
+
+/* Ventana modal */
+#modal_container {
+  position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3333335d;
+  text-align: center;
+  display: none;
+}
+
+#modal {
+  border: 3px solid var(--color-boton4);
+  border-radius: 15px;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-fondo);
+  color: black;
+  text-align: center;
+}
+
+#modal p {
+  margin-top: 3%;
+}
+
+#modal .btn button{
+  background-color: var(--color-boton1);
+  color: var(--color-titulo);
+  border: none;
+  font-size: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10%;
+}
+
+#modal .btn button:hover {
+  cursor: pointer;
+}
