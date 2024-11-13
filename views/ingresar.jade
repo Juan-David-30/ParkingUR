@@ -8,7 +8,9 @@ block content
   .enlace
     a(href="/")   
       c.btn.btn-atras(class='btn btn-primary') « 
-  form(action="/entrada", method="post", id="formulario") 
+      form(action="/entrada", method="post", id="formulario") 
+
+  .tablas-contenedor
     .table-Tentrada
       table.tabla-redondeada
         thead
@@ -76,7 +78,33 @@ block content
                         option(value=piso)= "Piso " + piso
               //Boton de Guardar
               button#btn-guardar(type="submit") Subir
-
+    
+    .table-pisos 
+      table.tabla-redond 
+        thead 
+          tr 
+            th Cupos
+        tbody 
+          tr 
+            td 
+              .label-label-piso1  
+                label.label-piso1 Piso 1:
+          tr 
+            td
+              .label-label-piso2  
+                label.label-piso1 Piso 2:
+          tr 
+            td
+              .label-label-piso3    
+                label.label-piso1 Piso 3:
+          tr  
+            td 
+              .label-label-piso4  
+                label.label-piso1 Piso 4:
+          tr 
+            td
+              .label-label-piso5  
+                label.label-piso1 Piso 5:
 
   div(id="modal_container")
     div#modal

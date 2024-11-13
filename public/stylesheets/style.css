@@ -65,12 +65,30 @@ a.btn:hover{
   margin-bottom: -30px;
 }
 
+.moto_entrada{
+  position: relative;
+  width: 200px;
+  height: 170px;
+  top: -105px;
+  right: -470px;
+  pointer-events: none;
+}
+
 .carro {
   align-items: end;
   width: 300px;
   height: 260px;
   margin-left: 0px;
   margin-bottom: -5px;
+}
+
+.carro_entrada{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  top: -60px;
+  left: 165px;
+  pointer-events: none;
 }
 
 .lista {
@@ -156,6 +174,13 @@ a.btn:hover{
   left: 20px;
 }
 
+.tablas-contenedor{
+  display: flex; 
+  margin-top: -20px; 
+  left: 30px;
+  padding: 20px;
+}
+
 .table-Tentrada{
   display:inline-table;
   padding: 20px;
@@ -183,6 +208,7 @@ table.tabla-redondeada{
   border-collapse: separate;
   border-spacing: 0;
   margin-left: 100px;
+  margin-top: 50px;
   width: 1200px;
   height: 700px;
   border: 1px solid var(--color-fondo-titulo);
@@ -253,7 +279,7 @@ b.btn.seleccionado{
 .label-input-dueno{
   display: flex;
   gap: 10px;
-  margin-top: 180px;
+  margin-top: -100px;
   justify-content: center;
 }
 
