@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
+// Para validar formularios
+const { body, validationResult } = require("express-validator");
+
 // Import the functions you need from the SDKs you need
-const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, getCountFromServer } = require( 'firebase/firestore');
+const { Timestamp, getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, getCountFromServer, query, where } = require( 'firebase/firestore');
 const { db } = require('../DB/firebase');
 const { render } = require('jade');
 
-CUPOS = [7,7,7,7]
+CUPOS = [7,7,7,7,7]
 
 
-// Para obtener todos los elementos de una 
+// Para obtener todos los elementos de una colección
 async function getCollection(col)
 {
   const docs = await getDocs(collection(db, col));
@@ -25,6 +28,7 @@ async function getCollection(col)
   return tempDoc;
 }
 
+// Función que retorna la cuenta de vehiculos en cada piso
 async function getCount(col)
 {
   // Reference to the 'vehiculos' collection
@@ -39,12 +43,19 @@ async function getCount(col)
         pisoCount[piso - 1] = 1;
     }
   })
-  return pisoCount
 
+  for (let i = 0; i < CUPOS.length; i++){
+    if(!pisoCount[i])
+    {
+      pisoCount[i] = 0;
+    }
+  }
+
+  return pisoCount
 }
 
 
-// Para obtener todos los elementos de una 
+// Para obtener todos los elementos del historial
 async function getHistory()
 {
   const docs = await getDocs(collection(db, 'historial'));
@@ -58,6 +69,14 @@ async function getHistory()
   })
   return tempDoc;
 }
+
+
+/**
+ * 
+ * End points
+ * 
+ */
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -83,12 +102,57 @@ router.get('/entrada', async (req, res)=>{
 });
 
 
-router.post('/entrada', async (req, res)=>{
+router.post('/entrada', [
+  [
+    body("owner").notEmpty(),
+    body("floor").notEmpty(),
+    body("color").notEmpty(),
+    body("placa").notEmpty(),
+  ],
+],
+ async (req, res)=>{
+
+  const errors = validationResult(req);
+  
+  console.log(req.body.owner)
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render('ingresar', {
+      count: await getCount('vehiculos'), 
+      cupos: CUPOS,
+      errors: "Datos incorrectos",
+      form: req.body
+    });
+  }
+
+  if ((await getCount('vehiculos'))[req.body.floor - 1] >= CUPOS[req.body.floor - 1]){
+      return res.status(400).render('ingresar', {
+      count: await getCount('vehiculos'), 
+      cupos: CUPOS,
+      errors: "Cupos insuficientes en piso seleccionado",
+      form: req.body
+    });
+  }
+
+  const q = query(collection(db, 'vehiculos'), where('placa', '==' , req.body.placa));
+  const snapshot = await getCountFromServer(q);
+
+  if(snapshot.data().count >= 1){
+    return res.status(400).render('ingresar', {
+      count: await getCount('vehiculos'), 
+      cupos: CUPOS,
+      errors: "Ya se encuentra ingresado un vehiculo con esa placa",
+      form: req.body
+    });
+  }
+
   let tipo = true
   if(req.body.tipo == 'Moto')
   {
     tipo = false
   }
+
+
   const docRef = await addDoc(collection(db, "vehiculos"), {
     placa: req.body.placa,
     tipo: tipo,
@@ -98,7 +162,6 @@ router.post('/entrada', async (req, res)=>{
     entrada: Timestamp.fromDate(new Date())
   });
   res.redirect('/list');
-
 });
 
 router.get('/history', async (req, res)=>{
