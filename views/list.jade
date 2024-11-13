@@ -1,6 +1,81 @@
 extends layout
 
 block content
+  .barra-superior
+    h1= "Parking UR"
+
+  //Enlace atras
+  .enlace
+    a(href="/")   
+      c.btn.btn-atras(class='btn btn-primary') « 
+      form(action="/entrada", method="post", id="formulario") 
+
+  .tabla-Tlista
+    table.tabla-redondeada3
+      thead 
+        tr 
+          th(colspan="6") Lista de Vehiculos
+
+      tbody 
+        tr 
+          td(colspan="6")&emsp;
+        tr
+          th Placa
+          th Dueño
+          th Tipo
+          th Color
+          th Ingreso
+        
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+//block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar
   div 

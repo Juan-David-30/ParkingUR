@@ -1,24 +1,84 @@
 extends layout
 
 block content
-  h1= title
-  a(href="/", class='btn btn-danger') Regresar
+  .barra-superior
+    h1= "Parking UR"
 
-  div
-    table(class='table')
+  //Enlace atras
+  .enlace
+    a(href="/")   
+      c.btn.btn-atras(class='btn btn-primary') « 
+      form(action="/entrada", method="post", id="formulario") 
+
+  .tabla-Thistorial
+    table.tabla-redondeada4
       thead 
+        tr 
+          th(colspan="6") Historial
+
+      tbody 
+        tr 
+          td(colspan="6")&emsp;
         tr
           th Placa
-          th Tipo 
-          th Hora entrada
-          th Hora salida
-      tbody
-        each document in documentos 
-          tr 
-            td= document.placa 
-            if document.tipo
-              td Carro 
-            else 
-              td Moto
-            td= document.fecha_entrada
-            td= document.fecha_salida
+          th Dueño
+          th Tipo
+          th Piso 
+          th Ingreso
+          th Salida
+        
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;

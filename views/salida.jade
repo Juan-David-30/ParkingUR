@@ -1,10 +1,91 @@
 extends layout
 
 block content
-  h1= title
-  a(href="/", class='btn btn-danger') Regresar
-  div 
-  table(class="table")
+  .barra-superior
+    h1= "Parking UR"
+
+  //Enlace atras
+  .enlace
+    a(href="/")   
+      c.btn.btn-atras(class='btn btn-primary') « 
+      form(action="/entrada", method="post", id="formulario") 
+
+  .tabla-Tsalida
+    table.tabla-redondeada2
+      thead 
+        tr 
+          th(colspan="6") Salida
+
+      tbody 
+        tr 
+          td(colspan="6")&emsp;
+        tr
+          th Placa
+          th Dueño
+          th Tipo
+          th Piso 
+          th Color
+          th Salida
+        
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+
+        tr
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+          td&emsp;
+            
+       
+
+  //table(class="table")
     thead 
       th Piso
       th Cupos disponibles 
@@ -15,7 +96,7 @@ block content
         td= i + 1
         td= (cupo - (count[i] ? count[i] : 0))
         td= (count[i] ? count[i] : 0)
-  div
+  //div
     table(class='table')
       thead 
         tr
