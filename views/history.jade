@@ -26,59 +26,14 @@ block content
           th Piso 
           th Ingreso
           th Salida
-        
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
+        each document in documentos 
+          tr 
+            td= document.placa 
+            td= document.owner
+            if document.tipo
+              td Carro 
+            else 
+              td Moto
+            td= document.piso
+            td= document.fecha_entrada
+            td= document.fecha_salida

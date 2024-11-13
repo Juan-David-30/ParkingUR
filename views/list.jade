@@ -24,57 +24,22 @@ block content
           th Dueño
           th Tipo
           th Color
+          th Piso
           th Ingreso
         
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
+      each document in documentos 
+        tr 
+          td= document.placa 
+          td= document.owner 
+          td= document.color
+          if document.tipo
+            td Carro 
+          else 
+            td Moto
+          td= document.piso
+          td= document.fecha
 
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
+    
 //block content
   h1= title
   a(href="/", class='btn btn-danger') Regresar

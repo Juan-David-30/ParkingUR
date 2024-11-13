@@ -27,63 +27,20 @@ block content
           th Color
           th Salida
         
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-
-        tr
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-          td&emsp;
-            
-       
+        each document in documentos 
+          tr 
+            td= document.placa 
+            td= document.owner 
+            td= document.color
+            if document.tipo
+              td Carro 
+            else 
+              td Moto
+            td= document.fecha
+            td
+                form(action="/salida", method="post") 
+                    input(type="text", name="id", value=document.id, hidden=true)
+                    button.btn_salida(type="submit", class="btn btn-danger") Salida 
 
   //table(class="table")
     thead 
