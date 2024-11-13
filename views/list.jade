@@ -96,6 +96,8 @@ block content
     thead 
       tr
         th Placa
+        th Dueño
+        th Color
         th Tipo 
         th Piso
         th Hora entrada
@@ -103,6 +105,8 @@ block content
       each document in documentos 
         tr 
           td= document.placa 
+          td= document.owner 
+          td= document.color
           if document.tipo
             td Carro 
           else 

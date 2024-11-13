@@ -102,12 +102,16 @@ block content
         tr
           th Placa
           th Tipo 
+          th Dueño
+          th Color
           th Hora entrada
           th Salida
       tbody
         each document in documentos 
           tr 
             td= document.placa 
+            td= document.owner 
+            td= document.color
             if document.tipo
               td Carro 
             else 
@@ -118,3 +122,10 @@ block content
                     input(type="text", name="id", value=document.id, hidden=true)
                     button(type="submit", class="btn btn-danger") Salida 
 
+  div(id="modal_container")
+    div#modal
+      p ¿Eliminar vehiculo?
+      div.btn
+        button.btn(id='rechazar_btn') Rechazar 
+        button.btn(id='aceptar_btn') Aceptar
+  script(src="/javascripts/confirmationElimination.js") 
