@@ -513,3 +513,12 @@ c.btn:hover{
 #modal .btn button:hover {
   cursor: pointer;
 }
+
+/* Mensaje de error */
+.error_message {
+  text-align: center;
+  background-color: var(--color-boton3);
+  top: 0;
+  height: 2%;
+
+}

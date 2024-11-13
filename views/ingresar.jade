@@ -8,83 +8,97 @@ block content
   .enlace
     a(href="/")   
       c.btn.btn-atras(class='btn btn-primary') « 
-      form(action="/entrada", method="post", id="formulario") 
+  form(action="/entrada", method="post", id="formulario") 
 
-  .tablas-contenedor
-    .table-Tentrada
-      table.tabla-redondeada
-        thead
-          tr 
-            th Entrada 
-        tbody 
-          tr
-            td 
-              //Botones Carro Moto
-              input(type="radio", name="tipo", id="inputCarro", value="Carro", hidden, required)
-              label(for="inputCarro") 
-                b.btn.btn-car(data-vehiculo="Carro") Carro
-                img(src="/imagenes/carro_entrada.png", alt="carro_entrada", class='carro_entrada')
-                
+    .tablas-contenedor
+      .table-Tentrada
+        table.tabla-redondeada
+          thead
+            tr 
+              th Entrada 
+                  
+          tbody 
+            tr
+              td 
+                //Botones Carro Moto
+                if (form && form.tipo)
+                  if form.tipo == "carro"
+                    input(type="radio", name="tipo", id="inputCarro", value="Carro", hidden, required, checked)
+                    label(for="inputCarro") 
+                      b.btn.btn-car(data-vehiculo="Carro", class="seleccionado") Carro
+                      img(src="/imagenes/carro_entrada.png", alt="carro_entrada", class='carro_entrada')
+                  
+                    input(type="radio", name="tipo", id="inputMoto", value="Moto", hidden, required)
+                    label(for="inputMoto") 
+                      b.btn.btn-bike(data-vehiculo="Moto") Moto
+                      img(src="/imagenes/moto_entrada.png", alt="moto_entrada", class='moto_entrada')
+                  else 
+                    input(type="radio", name="tipo", id="inputCarro", value="Carro", hidden, required)
+                    label(for="inputCarro") 
+                      b.btn.btn-car(data-vehiculo="Carro") Carro
+                      img(src="/imagenes/carro_entrada.png", alt="carro_entrada", class='carro_entrada')
+                  
+                    input(type="radio", name="tipo", id="inputMoto", value="Moto", hidden, required, checked)
+                    label(for="inputMoto") 
+                      b.btn.btn-bike(data-vehiculo="Moto", class="seleccionado") Moto
+                      img(src="/imagenes/moto_entrada.png", alt="moto_entrada", class='moto_entrada')
 
-              input(type="radio", name="tipo", id="inputMoto", value="Moto", hidden, required)
-              label(for="inputMoto") 
-                b.btn.btn-bike(data-vehiculo="Moto") Moto
-                img(src="/imagenes/moto_entrada.png", alt="moto_entrada", class='moto_entrada')
 
-              //Entrada de dueño
-              .label-input-dueno
-                  label.label-dueno Dueño:
-                  input#dueno-input(type="text", placeholder="", name="owner", required)
+                else 
+                  input(type="radio", name="tipo", id="inputCarro", value="Carro", hidden, required)
+                  label(for="inputCarro") 
+                    b.btn.btn-car(data-vehiculo="Carro") Carro
+                    img(src="/imagenes/carro_entrada.png", alt="carro_entrada", class='carro_entrada')
+                  
+                  input(type="radio", name="tipo", id="inputMoto", value="Moto", hidden, required)
+                  label(for="inputMoto") 
+                    b.btn.btn-bike(data-vehiculo="Moto") Moto
+                    img(src="/imagenes/moto_entrada.png", alt="moto_entrada", class='moto_entrada')
 
-              //Entrada de placa
-              .label-input-placa
-                label.label-placa Placa:
-                input#placa-input(type="text", name="placa", required,  pattern='[A-Za-z]{3}[0-9]{3}', title='Formato de placa 3 letras 3 números') 
+                //Entrada de dueño
+                .label-input-dueno
+                    label.label-dueno Dueño:
+                    input#dueno-input(type="text", placeholder="", name="owner", required, value= (form && form.owner) || "" )
 
-              //Entrada de color
-              .label-input-color
-                  label.label-color Color:
-                  input#color-input(type="text", placeholder="", name="color", required)
+                //Entrada de placa
+                .label-input-placa
+                  label.label-placa Placa:
+                  if (form && form.tipo && form.tipo == "Moto")
+                    input#placa-input(type="text", name="placa", required,  pattern="[A-Za-z]{3}[0-9]{2}[A-Za-z]", title='Formato de placa 3 letras 2 números 1 letra',  value= (form && form.placa) || "")
+                  else 
+                    input#placa-input(type="text", name="placa", required,  pattern='[A-Za-z]{3}[0-9]{3}', title='Formato de placa 3 letras 3 números',  value= (form && form.placa) || "")  
 
-              //Entrada de piso
-              .label-select-piso
-                  label.label-piso Piso:
-                  select#piso-select(name="floor", required)
-                    option(value="1") Piso 1
-                    option(value="2") Piso 2
-                    option(value="3") Piso 3
-                    option(value="4") Piso 4
-                    option(value="5") Piso 5
+                //Entrada de color
+                .label-input-color
+                    label.label-color Color:
+                    input#color-input(type="text", placeholder="", name="color", required, value= (form && form.color) || "")
 
-              //Boton de Guardar
-              button#btn-guardar(type="submit") Subir
-    
-    .table-pisos 
-      table.tabla-redond 
-        thead 
-          tr 
-            th Cupos
-        tbody 
-          tr 
-            td 
-              .label-label-piso1  
-                label.label-piso1 Piso 1:
-          tr 
-            td
-              .label-label-piso2  
-                label.label-piso1 Piso 2:
-          tr 
-            td
-              .label-label-piso3    
-                label.label-piso1 Piso 3:
-          tr  
-            td 
-              .label-label-piso4  
-                label.label-piso1 Piso 4:
-          tr 
-            td
-              .label-label-piso5  
-                label.label-piso1 Piso 5:
+                //Entrada de piso
+                .label-select-piso
+                    label.label-piso Piso:
+                    select#piso-select(name="floor", required)
+                      for piso in [1,2,3,4,5]
+                        if (form && form.floor && form.floor == piso)
+                          option(value=piso, selected)= "Piso " + piso
+                        else 
+                          option(value=piso)= "Piso " + piso
+                //Boton de Guardar
+                button#btn-guardar(type="submit") Subir
+            if errors
+              tr
+                td.error_message=  errors
+      
+      .table-pisos 
+        table.tabla-redond 
+          thead 
+            tr 
+              th Cupos
+          tbody 
+            each cupo, piso in cupos
+              tr 
+                td 
+                  .label-label-piso1  
+                    label.label-piso1= "Piso "+ (piso + 1) + ": " + (cupo - count[piso])
 
   div(id="modal_container")
     div#modal
