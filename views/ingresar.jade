@@ -8,7 +8,9 @@ block content
   .enlace
     a(href="/")   
       c.btn.btn-atras(class='btn btn-primary') « 
-  form(action="/entrada", method="post", id="formulario") 
+      form(action="/entrada", method="post", id="formulario") 
+
+  .tablas-contenedor
     .table-Tentrada
       table.tabla-redondeada
         thead
@@ -21,9 +23,13 @@ block content
               input(type="radio", name="tipo", id="inputCarro", value="Carro", hidden, required)
               label(for="inputCarro") 
                 b.btn.btn-car(data-vehiculo="Carro") Carro
+                img(src="/imagenes/carro_entrada.png", alt="carro_entrada", class='carro_entrada')
+                
+
               input(type="radio", name="tipo", id="inputMoto", value="Moto", hidden, required)
               label(for="inputMoto") 
                 b.btn.btn-bike(data-vehiculo="Moto") Moto
+                img(src="/imagenes/moto_entrada.png", alt="moto_entrada", class='moto_entrada')
 
               //Entrada de dueño
               .label-input-dueno
@@ -52,7 +58,33 @@ block content
 
               //Boton de Guardar
               button#btn-guardar(type="submit") Subir
-
+    
+    .table-pisos 
+      table.tabla-redond 
+        thead 
+          tr 
+            th Cupos
+        tbody 
+          tr 
+            td 
+              .label-label-piso1  
+                label.label-piso1 Piso 1:
+          tr 
+            td
+              .label-label-piso2  
+                label.label-piso1 Piso 2:
+          tr 
+            td
+              .label-label-piso3    
+                label.label-piso1 Piso 3:
+          tr  
+            td 
+              .label-label-piso4  
+                label.label-piso1 Piso 4:
+          tr 
+            td
+              .label-label-piso5  
+                label.label-piso1 Piso 5:
 
   div(id="modal_container")
     div#modal
@@ -61,44 +93,6 @@ block content
         button.btn(id='rechazar_btn') Rechazar 
         button.btn(id='aceptar_btn') Aceptar
 
-
-  .table-pisos 
-    table.tabla-redond 
-      thead 
-        tr 
-          th Cupos
-      tbody 
-        tr 
-          td 
-            .label-label-piso1  
-              label.label-piso1 Piso 1:
-        tr 
-          td
-            .label-label-piso2  
-              label.label-piso1 Piso 2:
-        tr 
-          td
-            .label-label-piso3  
-              label.label-piso1 Piso 3:
-        tr  
-          td 
-            .label-label-piso4  
-              label.label-piso1 Piso 4:
-        tr 
-          td
-            .label-label-piso5  
-              label.label-piso1 Piso 5:
-
-
-  //form(action="/entrada", method="post") 
-    p Tipo de vehiculo: 
-      select(name="tipo", required=true, id='tipo')
-          option(value="") Elegir 
-          option(value="1") Carro 
-          option(value="0") Moto 
-    p Placa:   
-      input(type="text", name ="placa", required=true, pattern='[A-Za-z]{3}[0-9]{3}' title='Formato de placa 3 letras 3 números', id='placa')
-    button(type="submit", namespace ="Subir", class='btn btn-success') Subir 
   script(src="/javascripts/validation.js") 
   script(src="/javascripts/selection.js")
   script(src="/javascripts/confirmation.js") 
