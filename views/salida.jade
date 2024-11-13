@@ -24,18 +24,18 @@ block content
           th Dueño
           th Tipo
           th Piso 
-          th Color
+          th Entrada
           th Salida
         
         each document in documentos 
           tr 
             td= document.placa 
             td= document.owner 
-            td= document.color
             if document.tipo
               td Carro 
             else 
               td Moto
+            td= document.piso
             td= document.fecha
             td
                 form(action="/salida", method="post") 

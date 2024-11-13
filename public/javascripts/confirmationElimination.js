@@ -9,7 +9,7 @@ for (form of forms)
 {
     form.addEventListener('submit', function (event) {
         event.preventDefault(); 
-        focusedForm = form
+        focusedForm = event.target
         modal.style.display = 'block'; 
     });
 }
