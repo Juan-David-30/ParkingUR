@@ -26,14 +26,18 @@ block content
           th Piso 
           th Ingreso
           th Salida
-        each document in documentos 
+        if documentos.length > 0
+          each document in documentos 
+            tr 
+              td= document.placa 
+              td= document.owner
+              if document.tipo
+                td Carro 
+              else 
+                td Moto
+              td= document.piso
+              td= document.fecha_entrada
+              td= document.fecha_salida
+        else 
           tr 
-            td= document.placa 
-            td= document.owner
-            if document.tipo
-              td Carro 
-            else 
-              td Moto
-            td= document.piso
-            td= document.fecha_entrada
-            td= document.fecha_salida
+            td(colspan="7")= 'No hay autos disponibles'

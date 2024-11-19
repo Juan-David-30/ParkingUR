@@ -14,33 +14,38 @@ block content
     table.tabla-redondeada2
       thead 
         tr 
-          th(colspan="6") Salida
+          th(colspan="7") Salida
 
       tbody 
         tr 
-          td(colspan="6")&emsp;
+          td(colspan="7")&emsp;
         tr
           th Placa
           th Dueño
           th Tipo
           th Piso 
+          th Color
           th Entrada
           th Salida
-        
-        each document in documentos 
+        if documentos.length > 0
+          each document in documentos 
+            tr 
+              td= document.placa 
+              td= document.owner 
+              if document.tipo
+                td Carro 
+              else 
+                td Moto
+              td= document.piso
+              td= document.color
+              td= document.fecha
+              td
+                  form(action="/salida", method="post") 
+                      input(type="text", name="id", value=document.id, hidden=true)
+                      button.btn_salida(type="submit", class="btn btn-danger") Salida 
+        else 
           tr 
-            td= document.placa 
-            td= document.owner 
-            if document.tipo
-              td Carro 
-            else 
-              td Moto
-            td= document.piso
-            td= document.fecha
-            td
-                form(action="/salida", method="post") 
-                    input(type="text", name="id", value=document.id, hidden=true)
-                    button.btn_salida(type="submit", class="btn btn-danger") Salida 
+            td(colspan="7")= 'No hay autos disponibles'
 
   //table(class="table")
     thead 

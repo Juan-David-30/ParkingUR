@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
           inputPlaca.maxLength = 6;
         }
   
-        // Limpiar el valor del input y el mensaje de advertencia
-        inputPlaca.value = '';
         mensajeAdvertencia.style.display = 'none';
       });
     });
