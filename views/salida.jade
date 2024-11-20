@@ -45,47 +45,10 @@ block content
           tr 
             td(colspan="7")= 'No hay autos disponibles'
 
-  //table(class="table")
-    thead 
-      th Piso
-      th Cupos disponibles 
-      th Vehiculos activos
-    tbody 
-    each cupo, i in cupos
-      tr
-        td= i + 1
-        td= (cupo - (count[i] ? count[i] : 0))
-        td= (count[i] ? count[i] : 0)
-  //div
-    table(class='table')
-      thead 
-        tr
-          th Placa
-          th Tipo 
-          th Dueño
-          th Color
-          th Hora entrada
-          th Salida
-      tbody
-        each document in documentos 
-          tr 
-            td= document.placa 
-            td= document.owner 
-            td= document.color
-            if document.tipo
-              td Carro 
-            else 
-              td Moto
-            td= document.fecha
-            td
-                form(action="/salida", method="post") 
-                    input(type="text", name="id", value=document.id, hidden=true)
-                    button(type="submit", class="btn btn-danger") Salida 
-
   div(id="modal_container")
     div#modal
       p ¿Eliminar vehiculo?
       div.btn
-        button.btn(id='rechazar_btn') Rechazar 
         button.btn(id='aceptar_btn') Aceptar
+        button.btn(id='rechazar_btn') Rechazar     
   script(src="/javascripts/confirmationElimination.js") 
