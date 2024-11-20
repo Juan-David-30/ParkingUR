@@ -154,7 +154,7 @@ router.post('/entrada', [
 
 
   const docRef = await addDoc(collection(db, "vehiculos"), {
-    placa: req.body.placa,
+    placa: req.body.placa.toUpperCase().replace(/\s/g, ''),
     tipo: tipo,
     piso: req.body.floor,
     owner: req.body.owner, 

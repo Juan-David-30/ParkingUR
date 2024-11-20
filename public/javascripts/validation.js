@@ -16,3 +16,11 @@ inputs_tipo.forEach(tipo => {
         }
     }); 
 });
+
+
+const input_placa = document.getElementById('placa-input');
+
+input_placa.addEventListener('change', event => {
+
+    event.target.value = event.target.value.toUpperCase().replace(/\s/g, ''); 
+})
